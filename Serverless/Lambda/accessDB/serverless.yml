@@ -1,0 +1,24 @@
+service: AccessDB
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  iamRoleStatements:
+   - Effect: "Allow"
+     Action:
+       - "dynamodb:*"
+       - "s3:*"
+     Resource:
+         - "arn:aws:s3:::secondb00882286/*"
+         - "arn:aws:dynamodb:*:*:table/filerecord"     
+
+functions:
+  accessDB:
+    handler: handler.accessDB
+    # events:
+    #  - s3: 
+    #      bucket: "secondb00882286"
+    #      event: s3:ObjectCreated:*
+    #      existing: true
